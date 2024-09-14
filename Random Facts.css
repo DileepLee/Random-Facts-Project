@@ -1,0 +1,27 @@
+/* Style for the container */
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Style for the input element */
+#userInput {
+    margin-top: 10px;
+}
+
+/* Style for the "Submit" button */
+#submitButton {
+    margin-top: 10px;
+}
+
+/* Style for the loading spinner */
+#loadingSpinner {
+    margin-top: 20px;
+}
+
+/* Style for the fact paragraph */
+#fact {
+    margin-top: 20px;
+    font-size: 18px;
+}

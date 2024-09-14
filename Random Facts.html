@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="C:\Users\HP\OneDrive\Desktop\Random Facts\Random Facts.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Number Facts</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="form-group">
+            <label for="userInput">Enter a number:</label>
+            <input type="text" id="userInput" class="form-control" placeholder="Enter a number" />
+        </div>
+        <button id="submitButton" class="btn btn-primary">Submit</button>
+    </div>
+    <div class="container mt-3">
+        <div class="spinner-border text-primary" role="status" id="loadingSpinner" style="display: none;"></div>
+    </div>
+    <div class="container mt-3">
+        <p id="fact"></p>
+    </div>
+
+    <script>
+        const userInput = document.getElementById("userInput");
+        const fact = document.getElementById("fact");
+        const loadingSpinner = document.getElementById("loadingSpinner");
+
+        document.getElementById("submitButton").addEventListener("click", () => {
+            const number = userInput.value;
+            if (number.trim() === "") {
+                alert("Please enter a number.");
+            } else {
+                loadingSpinner.style.display = "block";
+                fetch(`https://apis.ccbp.in/numbers-fact?number=${number}`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        loadingSpinner.style.display = "none";
+                        fact.textContent = data.fact;
+                    })
+                    .catch((error) => {
+                        loadingSpinner.style.display = "none";
+                        console.error("Error:", error);
+                    });
+            }
+            userInput.value = "";
+        });
+    </script>
+</body>
+</html>
